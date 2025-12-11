@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AssetSweeper</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="branding">
+        <div class="branding-logo" aria-hidden="true">
+          <img src="assets/lansweeper-logo.svg" alt="Lansweeper logo" />
+        </div>
+        <div class="title-block">
+          <h1>AssetSweeper</h1>
+          <p class="subtitle">Network discovery without the surprises.</p>
+        </div>
+      </div>
+      <div class="hud">
+        <div class="hud-item">
+          <span class="label">Timer</span>
+          <span id="timer" class="value">00:00</span>
+        </div>
+        <div class="hud-item">
+          <span class="label">Rogue Assets</span>
+          <span id="mine-count" class="value">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="label">Difficulty</span>
+          <span id="difficulty-label" class="value">-</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="game-panel">
+        <div id="game-container" class="game-container"></div>
+        <div class="legend">
+          <h3>Legend</h3>
+          <ul>
+            <li><span class="badge safe"></span>Clean asset</li>
+            <li><span class="badge risky"></span>Rogue asset tag</li>
+            <li><span class="badge scan"></span>Port scan radius</li>
+          </ul>
+          <button id="how-to-play" class="link-button">How to play</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <h2>Power-Ups</h2>
+        <div class="powerups" id="powerups">
+          <button class="power-button" data-power="firewall">
+            <span class="icon">🛡️</span>
+            <div>
+              <div class="name">Firewall Shield</div>
+              <div class="count">x<span class="remaining" data-power-count="firewall">1</span></div>
+            </div>
+          </button>
+          <button class="power-button" data-power="scanner">
+            <span class="icon">📡</span>
+            <div>
+              <div class="name">Port Scanner</div>
+              <div class="count">x<span class="remaining" data-power-count="scanner">2</span></div>
+            </div>
+          </button>
+          <button class="power-button" data-power="network">
+            <span class="icon">🗺️</span>
+            <div>
+              <div class="name">Network Map</div>
+              <div class="count">x<span class="remaining" data-power-count="network">2</span></div>
+            </div>
+          </button>
+          <button class="power-button" data-power="undo">
+            <span class="icon">↩️</span>
+            <div>
+              <div class="name">Software Patch</div>
+              <div class="count">x<span class="remaining" data-power-count="undo">3</span></div>
+            </div>
+          </button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="modal" id="start-modal">
+    <div class="modal-content">
+      <h2>Deploy AssetSweeper</h2>
+      <p>Select your discovery scope.</p>
+      <div class="difficulty-buttons">
+        <button data-difficulty="easy">Easy 10x10</button>
+        <button data-difficulty="medium">Medium 16x16</button>
+        <button data-difficulty="hard">Hard 22x22</button>
+      </div>
+      <button id="open-howto" class="ghost">Read How-To</button>
+    </div>
+  </div>
+
+  <div class="modal" id="howto-modal">
+    <div class="modal-content">
+      <h2>How to Play</h2>
+      <p>Discover every clean asset while tagging each Rogue Asset before it causes trouble.</p>
+      <ul>
+        <li>Left click or tap to reveal a tile. Numbers show nearby Rogue Assets.</li>
+        <li>Right click or long-press to tag a suspected Rogue Asset.</li>
+        <li>Use power-ups when things look risky. Undo reverts your last reveal.</li>
+        <li>Win by revealing all safe tiles and tagging every Rogue Asset.</li>
+      </ul>
+      <button class="primary" data-close="howto-modal">Back</button>
+    </div>
+  </div>
+
+  <div class="modal" id="win-modal">
+    <div class="modal-content">
+      <h2>Network Secured</h2>
+      <p id="win-stats"></p>
+      <button class="primary" id="play-again-win">Play Again</button>
+    </div>
+  </div>
+
+  <div class="modal" id="loss-modal">
+    <div class="modal-content">
+      <h2>Incident Report</h2>
+      <p id="loss-copy">A Rogue Asset triggered an incident. Review and redeploy.</p>
+      <button class="primary" id="play-again-loss">Try Again</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
