@@ -1,6 +1,6 @@
 # Asset Sweeper
 
-Asset Sweeper is a Lansweeper-themed, Minesweeper-style puzzle game where you audit a grid of IT assets. Your goal is to reveal every clean asset while correctly tagging each Rogue Asset before it causes trouble.
+Asset Sweeper is a Lansweeper-themed, Minesweeper-style puzzle game where you audit a grid of IT assets. Your goal is to find and reveal every clean asset while correctly tagging each Rogue Asset before it ccan cause any trouble.
 
 **How to Play**
 
